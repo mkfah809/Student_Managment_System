@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Register</title>
+<body>
+	<div>
+		<h1>Register A New Decon</h1>
+	</div>
+	<form method="POST" th:action="@{/register-new-decon}">
+		<div>
+			First Name<input type="text" required th:field="${decon.firstName}">
+		</div>
+		<div>
+			Last Name<input type="text" required th:field="${decon.lastName}">
+		</div>
+		<div>
+			Date of birth<input type="date" required th:field="${decon.dateOfBirth}">
+		</div>
+		<div>
+			Email<input type="email" required th:field="${decon.email}">
+		</div>
+		<div>
+			Address<input type="text" required th:field="${decon.address.addressLine}">
+		</div>
+		<div>
+			ZipCode<input type="text" required th:field="${decon.address.zipCode}">
+		</div>
+		<div>
+			<button type="submit">Submit</button>
+		</div>
+	</form>
+</body>
+</head>
+</html>

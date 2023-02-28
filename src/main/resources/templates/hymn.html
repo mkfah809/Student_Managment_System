@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Register</title>
+<body>
+	<div>
+		<h1>Register A New Hymn</h1>
+	</div>
+
+	<form method="POST" th:action="@{/register-new-hymn}">
+		<div>
+			<textarea placeholder="Name" required th:field="${hymn.name}"></textarea>
+		</div>
+		<div>
+			<textarea placeholder="When Do We Say it" required
+				th:field="${hymn.whenToSay}"></textarea>
+		</div>
+		<div>
+			<input placeholder="Who Say it" required th:field="${hymn.whoSay}">
+		</div>
+		<div>
+			<textarea placeholder="Contemplation" required
+				th:field="${hymn.description}"></textarea>
+		</div>
+
+		<div>
+			<button type="submit">Submit</button>
+		</div>
+	</form>
+</body>
+</head>
+</html>
