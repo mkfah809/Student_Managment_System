@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Decons</title>
+<body>
+	<div th:each="decon : ${decons}">
+		<a th:href="@{/get-decon-{deconId}(deconId=${decon.deconId})}">[[${decon.firstName}]] [[${decon.lastName}]]</a>
+	</div>
+	
+	<a href="/dashboard">
+	<Button>Main Page</Button>
+	</a>
+</body>
+</head>
+</html>

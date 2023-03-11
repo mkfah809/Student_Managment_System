@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Decon Profile</title>
+<body>
+	<h1>[[${decon.firstName}]] [[${decon.lastName}]]</h1>
+	<form method="POST"
+		th:action="@{/update-decon-{deconId}(deconId=${decon.deconId})}">
+		<div>
+			<input type="hidden" required th:field="${decon.deconId}">
+			<div>
+				First Name<input type="text" required th:field="${decon.firstName}">
+				Last Name<input type="text" required th:field="${decon.lastName}">
+			</div>
+			<div>
+				Address<input type="text" required
+					th:field="${decon.address.addressLine}"> ZipCode<input
+					type="text" required th:field="${decon.address.zipCode}">
+
+			</div>
+			<div>
+				Email<input type="email" required th:field="${decon.email}">
+				Date of birth<input type="date" required
+					th:field="${decon.dateOfBirth}">
+			</div>
+		</div>
+		<input type="hidden" th:field="${decon.address.deconId}">
+		<Button value="Submit">Submit</Button>
+	</form>
+</body>
+</head>
+</html>

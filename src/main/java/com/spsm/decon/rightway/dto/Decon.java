@@ -2,6 +2,7 @@ package com.spsm.decon.rightway.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,12 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.List;
 
 @Entity
 @Table(name = "decons")
@@ -30,7 +30,17 @@ public class Decon {
 	private Address address;
 	private String email;
 	private List<Hymn> hymns = new ArrayList<>();
-	
+	private List<Log> logs = new ArrayList<>();
+
+	@OneToMany(mappedBy = "decon")
+	public List<Log> getLogs() {
+		return logs;
+	}
+
+	public void setLogs(List<Log> logs) {
+		this.logs = logs;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinTable(name = "decon_has_hymns", joinColumns = @JoinColumn(name = "decon_id"), inverseJoinColumns = @JoinColumn(name = "hymn_id"))
 	public List<Hymn> getHymns() {

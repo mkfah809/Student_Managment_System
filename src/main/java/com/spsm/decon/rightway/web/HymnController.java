@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.spsm.decon.rightway.dto.Hymn;
-import com.spsm.decon.rightway.service.HymnService;
+import com.spsm.decon.rightway.service.HymnServiceImpl;
 
 @Controller
 public class HymnController {
 	@Autowired
-	HymnService hymnService;
+	HymnServiceImpl hymnService;
 
 	@GetMapping("/register-new-hymn")
 	private String getRegisterHymn(ModelMap model) {
@@ -23,6 +23,6 @@ public class HymnController {
 	@PostMapping("/register-new-hymn")
 	private String postRegister(Hymn hymn) {
 		Hymn savedHymn = hymnService.save(hymn);
-		return "welcome";
+		return "dashboard";
 	}
 }

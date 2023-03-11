@@ -13,21 +13,27 @@
 			Last Name<input type="text" required th:field="${decon.lastName}">
 		</div>
 		<div>
-			Date of birth<input type="date" required th:field="${decon.dateOfBirth}">
+			Date of birth<input type="date" required
+				th:field="${decon.dateOfBirth}">
 		</div>
 		<div>
 			Email<input type="email" required th:field="${decon.email}">
 		</div>
 		<div>
-			Address<input type="text" required th:field="${decon.address.addressLine}">
+			Address<input type="text" required
+				th:field="${decon.address.addressLine}">
 		</div>
 		<div>
-			ZipCode<input type="text" required th:field="${decon.address.zipCode}">
+			ZipCode<input type="text" required
+				th:field="${decon.address.zipCode}">
 		</div>
 		<div>
 			<button type="submit">Submit</button>
 		</div>
 	</form>
+	<a href="/dashboard">
+		<Button>Main Page</Button>
+	</a>
 </body>
 </head>
 </html>
