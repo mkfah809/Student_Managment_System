@@ -2,7 +2,9 @@ package com.spsm.decon.rightway.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,11 +28,41 @@ public class Decon {
 	private Long deconId;
 	private String firstName;
 	private String lastName;
+	private String username;
+	private String password;
 	private LocalDate dateOfBirth;
 	private Address address;
 	private String email;
 	private List<Hymn> hymns = new ArrayList<>();
 	private List<Log> logs = new ArrayList<>();
+	private Set<Authority> authorities = new HashSet<>();
+
+	@Column(unique = true)
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, mappedBy = "decon")
+	public Set<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(Set<Authority> authorities) {
+		this.authorities = authorities;
+	}
 
 	@OneToMany(mappedBy = "decon")
 	public List<Log> getLogs() {

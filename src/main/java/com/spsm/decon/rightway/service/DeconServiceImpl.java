@@ -36,7 +36,11 @@ public class DeconServiceImpl implements DeconServiceRepoistory {
 	@Override
 	public List<Decon> findAll() {
 		return deconRepo.findAll();
-
 	}
+	
+	public Decon findByUsername(String username) {
+		return deconRepo.findByUsername(username);
+	}
+	
 
 }
