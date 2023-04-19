@@ -5,13 +5,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.spsm.decon.rightway.dto.Decon;
+import com.spsm.decon.rightway.dto.Deacon;
 
 @Repository
-public interface DeconRepository extends JpaRepository<Decon, Long>{
+public interface UserRepository extends JpaRepository<Deacon, Long>{
 
-	@Query("select d from Decon d "
+	@Query("select d from Deacon d "
 			+ " left join  fetch d.authorities "
 			+ "where d.username = :username") 
-	Decon findByUsername(@Param(value = "username") String username);
+	Deacon findByUsername(@Param(value = "username") String username);
 }

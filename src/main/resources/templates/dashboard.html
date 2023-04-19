@@ -2,18 +2,24 @@
 <head>
 <title>Dashboard</title>
 <body>
+	<div>
+		<a href="/register-new-decon">Register an Admin deacon?</a>
+	</div>
+	<div>
+		<a href="/register-new-hymn">Register a new hymn?</a>
+	</div>
 
-	<a href="/register-new-decon">Register a new decon?</a>
-	<br>
-	<a th:if="access == " href="/register-new-hymn">Register a new hymn?</a>
-	<br>
-	<a href="/get-all-decons">Want to access all Decons?</a>
+	<div>
+		<a href="/get-all-decons">Want to access all Deacons?</a>
+	</div>
+	<div>
+		<a th:href="@{/profile/{deconId}(deconId=${decon.deconId})}">Profile</a>
+	</div>
 
 	<form id="nav-right" action="/logout" method="POST">
 		<input class="btn btn-primary" type="hidden"
 			th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		<button class="btn btn-primary" type="submit">
-			Logout</button>
+		<button class="btn btn-primary" type="submit">Logout</button>
 	</form>
 </body>
 </head>

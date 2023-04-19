@@ -10,28 +10,28 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.spsm.decon.rightway.dto.Address;
 import com.spsm.decon.rightway.dto.Authority;
-import com.spsm.decon.rightway.dto.Decon;
+import com.spsm.decon.rightway.dto.Deacon;
 import com.spsm.decon.rightway.dto.Hymn;
 import com.spsm.decon.rightway.dto.Log;
 
-public class CustomSecurityDecon extends Decon implements UserDetails {
+public class CustomSecurityDecon extends Deacon implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
 	public CustomSecurityDecon() {} 
 	
-	public CustomSecurityDecon(Decon decon) {
-		this.setAuthorities(decon.getAuthorities());
+	public CustomSecurityDecon(Deacon deacon) {
+		this.setAuthorities(deacon.getAuthorities());
 		this.setDeconId(getDeconId());
-		this.setPassword(decon.getPassword());
-		this.setUsername(decon.getUsername());
-		this.setAddress(decon.getAddress());
-		this.setHymns(decon.getHymns());
-		this.setLogs(decon.getLogs());
-		this.setFirstName(decon.getFirstName());
-		this.setFirstName(decon.getLastName());
-		this.setDateOfBirth(decon.getDateOfBirth());
-		this.setEmail(decon.getEmail());
+		this.setPassword(deacon.getPassword());
+		this.setUsername(deacon.getUsername());
+		this.setAddress(deacon.getAddress());
+		this.setHymns(deacon.getHymns());
+		this.setLogs(deacon.getLogs());
+		this.setFirstName(deacon.getFirstName());
+		this.setFirstName(deacon.getLastName());
+		this.setDateOfBirth(deacon.getDateOfBirth());
+		this.setEmail(deacon.getEmail());
 	}
 	
 	@Override

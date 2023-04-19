@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name="address")
 public class Address {
 	private Long deconId;
-	private Decon decon;
+	private Deacon decon;
 	private String addressLine;
 	private String zipCode;
 	
@@ -28,10 +28,10 @@ public class Address {
 	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
 	@MapsId
 	@JoinColumn(name = "decon_id")
-	public Decon getDecon() {
+	public Deacon getDecon() {
 		return decon;
 	}
-	public void setDecon(Decon decon) {
+	public void setDecon(Deacon decon) {
 		this.decon = decon;
 	}
 

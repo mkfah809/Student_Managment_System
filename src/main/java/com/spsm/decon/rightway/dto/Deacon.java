@@ -24,7 +24,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "decons")
-public class Decon {
+public class Deacon {
 	private Long deconId;
 	private String firstName;
 	private String lastName;
@@ -33,9 +33,20 @@ public class Decon {
 	private LocalDate dateOfBirth;
 	private Address address;
 	private String email;
+	private String consecration;
 	private List<Hymn> hymns = new ArrayList<>();
 	private List<Log> logs = new ArrayList<>();
 	private Set<Authority> authorities = new HashSet<>();
+	
+	
+	@Column(length = 15)
+	public String getConsecration() {
+		return consecration;
+	}
+
+	public void setConsecration(String consecration) {
+		this.consecration = consecration;
+	}
 
 	@Column(unique = true)
 	public String getUsername() {

@@ -15,17 +15,25 @@
 				Address<input type="text" required
 					th:field="${decon.address.addressLine}"> ZipCode<input
 					type="text" required th:field="${decon.address.zipCode}">
-
 			</div>
 			<div>
 				Email<input type="email" required th:field="${decon.email}">
 				Date of birth<input type="date" required
 					th:field="${decon.dateOfBirth}">
 			</div>
+			<div>
+				Username<input type="text" required th:field="${decon.username}">
+				Password <input type="password" required th:field="${decon.password}">
+
+			</div>
 		</div>
 		<input type="hidden" th:field="${decon.address.deconId}">
-		<Button value="Submit">Submit</Button>
+		<Button value="Submit">Update</Button>
 	</form>
+
+	<a href="/dashboard">
+		<Button>Main Page</Button>
+	</a>
 </body>
 </head>
 </html>

@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 
 import com.spsm.decon.rightway.dto.Address;
 import com.spsm.decon.rightway.dto.Hymn;
+import com.spsm.decon.rightway.interfaces.HymnServiceInterface;
 import com.spsm.decon.rightway.repository.HymnRepository;
-import com.spsm.decon.rightway.repository.HymnServiceRepoistory;
 
 @Service
-public class HymnServiceImpl implements HymnServiceRepoistory {
+public class HymnServiceImpl implements HymnServiceInterface {
 	@Autowired
 	HymnRepository hymnRepo;
 
