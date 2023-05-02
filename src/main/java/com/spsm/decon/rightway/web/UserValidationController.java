@@ -24,15 +24,15 @@ public class UserValidationController {
 		return "register";
 	}
 
-	@PostMapping("/new/register")
-
-	public ResponseEntity<Boolean> isUserExist(@RequestBody Deacon deacon) throws Exception {
-
+	@PostMapping("/new/register/username")
+  	public ResponseEntity<Boolean> isUserExist(@RequestBody Deacon deacon) throws Exception {
+		
 		if (deaconService.findByUsername(deacon.getUsername()) == null) {
 			Deacon savedUser = deaconService.save(deacon);
 			return ResponseEntity.ok(deacon == null);
 		}
-
 		return ResponseEntity.ok(deacon != null);
 	}
+	
+	
 }

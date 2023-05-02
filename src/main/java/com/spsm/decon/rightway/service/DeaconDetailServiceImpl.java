@@ -7,13 +7,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.spsm.decon.rightway.dto.Deacon;
-import com.spsm.decon.rightway.repository.UserRepository;
+import com.spsm.decon.rightway.repository.DeaconRepository;
 import com.spsm.decon.rightway.security.CustomSecurityDecon;
 
 @Service
 public class DeaconDetailServiceImpl implements UserDetailsService {
 	@Autowired
-	UserRepository deconRepo;
+	DeaconRepository deconRepo;
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Deacon deacon = deconRepo.findByUsername(username);		

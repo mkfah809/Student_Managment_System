@@ -8,69 +8,77 @@
 <link rel="stylesheet" href="/css/register.css">
 <script src="https://kit.fontawesome.com/f09b2e2e32.js"></script>
 <body>
-	<div class="container">
 
-		<form class="form" id="form" method="POST" action="/new/register">
 
-			<input type="text" id="csrf" th:name="${_csrf.parameterName}"
+	<form class="form" id="form" method="POST" action="/new/register">
+		<div class="flex-container">
+			<input type="hidden" id="csrf" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" />
 
 
-			<div class="form-control">
-				<input placeholder="First Name" type="text" id="firstName"
-					th:field="${deacon.firstName}"><small></small>
+			<div class="flex-item">
+				<label>First Name </label><input placeholder="Josh" type="text"
+					id="firstName" th:field="${deacon.firstName}"><small></small>
+				
 			</div>
-			<div class="form-control">
-				<input placeholder="Last Name" type="text" id="lastName"
-					th:field="${deacon.lastName}"><small></small>
+			<div class="flex-item">
+				<label>Last Name </label><input placeholder="Anderson" type="text"
+					id="lastName" th:field="${deacon.lastName}"><small></small>
 			</div>
-			<div class="form-control">
-				Date of birth<input type="date" id="dateOfBirth"
+			<div class="flex-item">
+				<label>Date of Birth </label><input type="date" id="dateOfBirth"
 					th:field="${deacon.dateOfBirth}"><small></small>
 			</div>
-			<div class="form-control">
-				<input placeholder="Email" type="email" id="email"
-					th:field="${deacon.email}"><small></small>
+			<div class="flex-item">
+				<label>Email </label><input placeholder="xxxxx@xxxx.com"
+					type="email" id="email" th:field="${deacon.email}"><small></small>
 			</div>
-			<div class="form-control">
-				<input placeholder="Full Address" type="text" id="addressLine"
+			<div class="flex-item">
+				<label>Address </label><input placeholder="123 Fake St Apt 401"
+					type="text" id="addressLine"
 					th:field="${deacon.address.addressLine}"><small></small>
 			</div>
-			<div class="form-control">
-				<input placeholder="ZipCode" type="text" id="zipCode"
-					th:field="${deacon.address.zipCode}"><small></small>
+			<div>
+				<label>Zip Code </label><input name="zipcode" placeholder="12345"
+					type="text" id="zipCode" th:field="${deacon.address.zipCode}">
+				<span id="city" th:field="${deacon.address.city}"></span>   <span
+					id="state" th:field="${deacon.address.state}"></span><small></small>
+			</div>
+
+
+			<div class="flex-item">
+				<label>Password </label><input id="password"
+					placeholder="Enter Password" type="password"
+					th:field="${deacon.password}"><i id="passwordEyeIcon"
+					class="fa-solid fa-eye"></i><small></small>
 			</div>
 			<div class="form-control">
-				<input placeholder="username" id="username" type="text"
-					th:field="${deacon.username}"><small></small>
+				<label>Confirm Password </label><input
+					placeholder="Confirm Password" type="password" id="confirmPassword"><i
+					id="confirmPasswordEyeIcon" class="fa-solid fa-eye"></i><small></small>
 			</div>
-			<div class="form-control">
-				<input id="password" placeholder="Password" type="password"
-					th:field="${deacon.password}"><small></small><i
-					id="passwordEyeIcon" class="fa-solid fa-eye"></i>
-			</div>
-			<div class="form-control">
-				<input placeholder="Confirm Password" type="password"
-					id="confirmPassword"><small></small><i
-					id="confirmPasswordEyeIcon" class="fa-solid fa-eye"></i>
-			</div>
-			<div class="form-control">
-				<select id="consecration" th:field="${deacon.consecration}">
-					<option th:value="None">Select Rank</option>
+			<div class="flex-item">
+				<label>Consecration </label><select id="consecration"
+					th:field="${deacon.consecration}">
+					<option th:value="NONE">Select Rank</option>
 					<option th:value="Psaltos">Psaltos</option>
 					<option th:value="Oghnostos">Oghnostos</option>
 					<option th:value="Diakon">Decon</option>
 					<option th:value="Congrgation">Congregation</option>
 				</select><small></small>
 			</div>
-			
-				<button id="submit" value="submit" type="submit">Submit</button>
-			
-		</form>
-		<div>
-			<a id="redirectToLogin" href="/login"></a>
+			<div class="flex-item">
+				<label>username </label><input placeholder="Janderson" id="username"
+					type="text" th:field="${deacon.username}"><small></small>
+			</div>
+			<button id="submit" value="submit" type="submit">Submit</button>
 		</div>
+	</form>
+	<div>
+		<a id="success" href="/login"></a>
 	</div>
+
+
 	<script type="text/javascript" src="/js/register.js"></script>
 </body>
 </head>

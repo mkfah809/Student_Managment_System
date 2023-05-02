@@ -19,14 +19,14 @@ import org.springframework.stereotype.Service;
 import com.spsm.decon.rightway.dto.Address;
 import com.spsm.decon.rightway.dto.Authority;
 import com.spsm.decon.rightway.dto.Deacon;
-import com.spsm.decon.rightway.interfaces.UserServiceInterface;
-import com.spsm.decon.rightway.repository.UserRepository;
+import com.spsm.decon.rightway.interfaces.DeaconServiceInterface;
+import com.spsm.decon.rightway.repository.DeaconRepository;
 
 @Service
-public class DeaconServiceImpl implements UserServiceInterface {
+public class DeaconServiceImpl implements DeaconServiceInterface {
 
 	@Autowired
-	UserRepository deconRepo;
+	DeaconRepository deaconRepo;
 	@Autowired
 	private JavaMailSender mailSender;
 	@Value("${gmail.email.subject}")
@@ -34,7 +34,7 @@ public class DeaconServiceImpl implements UserServiceInterface {
 
 	@Override
 	public Deacon findById(Long deconId) {
-		return deconRepo.findById(deconId).orElse(null);
+		return deaconRepo.findById(deconId).orElse(null);
 
 	}
 
@@ -46,12 +46,12 @@ public class DeaconServiceImpl implements UserServiceInterface {
 			setAuthorityToOneExactUser(deacon);
 		} else {
 		}
-		return deconRepo.save(deacon);
+		return deaconRepo.save(deacon);
 	}
 
 	@Override
 	public List<Deacon> findAll() {
-		return deconRepo.findAll();
+		return deaconRepo.findAll();
 	}
 
 	@Override
@@ -59,6 +59,8 @@ public class DeaconServiceImpl implements UserServiceInterface {
 		Address address = new Address();
 		address.setAddressLine(deacon.getAddress().getAddressLine());
 		address.setZipCode(deacon.getAddress().getZipCode());
+		address.setCity(deacon.getAddress().getCity());
+		address.setState(deacon.getAddress().getState());
 		address.setDeconId(deacon.getDeconId());
 		address.setDecon(deacon);
 		deacon.setAddress(address);
@@ -76,15 +78,14 @@ public class DeaconServiceImpl implements UserServiceInterface {
 
 	@Override
 	public String generateTempPassword() {
-		
-		return new Random().ints(48, 123).filter(num -> (num < 91 || num > 96)).limit(10)
-				.mapToObj(c -> (char) c).collect(StringBuffer::new, StringBuffer::append, StringBuffer::append)
-				.toString();
+
+		return new Random().ints(48, 123).filter(num -> (num < 91 || num > 96)).limit(10).mapToObj(c -> (char) c)
+				.collect(StringBuffer::new, StringBuffer::append, StringBuffer::append).toString();
 	}
 
 	@Override
 	public Deacon findByUsername(String username) {
-		return deconRepo.findByUsername(username);
+		return deaconRepo.findByUsername(username);
 	}
 
 	@Override
@@ -110,11 +111,14 @@ public class DeaconServiceImpl implements UserServiceInterface {
 	}
 
 	@Override
+	public Deacon findByEmail(String email) {
+		return deaconRepo.findByEmail(email);
+	}
+
+	@Override
 	public void sendMailForUsernameGenerator(Deacon decon) {
 		// TODO Auto-generated method stub
-		
-	}
-	
 
+	}
 
 }

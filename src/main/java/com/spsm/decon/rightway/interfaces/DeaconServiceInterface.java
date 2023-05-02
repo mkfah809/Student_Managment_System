@@ -4,12 +4,14 @@ import java.util.List;
 
 import com.spsm.decon.rightway.dto.Deacon;
 
-public interface UserServiceInterface {
+public interface DeaconServiceInterface {
 	Deacon save(Deacon decon);
 
 	Deacon findByUsername(String username);
 
 	Deacon findById(Long deconId);
+	
+	Deacon findByEmail(String email);
 
 	void setAddressToOneExactUser(Deacon decon);
 
