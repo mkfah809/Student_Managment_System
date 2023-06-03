@@ -10,7 +10,8 @@
 <body>
 
 
-	<form class="form" id="form" method="POST" action="/new/register">
+	<form class="form" id="form" method="POST"
+		action="/user/self/registeration">
 		<div class="flex-container">
 			<input type="hidden" id="csrf" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" />
@@ -19,7 +20,7 @@
 			<div class="flex-item">
 				<label>First Name </label><input placeholder="Josh" type="text"
 					id="firstName" th:field="${deacon.firstName}"><small></small>
-				
+
 			</div>
 			<div class="flex-item">
 				<label>Last Name </label><input placeholder="Anderson" type="text"
@@ -29,32 +30,31 @@
 				<label>Date of Birth </label><input type="date" id="dateOfBirth"
 					th:field="${deacon.dateOfBirth}"><small></small>
 			</div>
-			<div class="flex-item">
-				<label>Email </label><input placeholder="xxxxx@xxxx.com"
-					type="email" id="email" th:field="${deacon.email}"><small></small>
-			</div>
+
 			<div class="flex-item">
 				<label>Address </label><input placeholder="123 Fake St Apt 401"
 					type="text" id="addressLine"
 					th:field="${deacon.address.addressLine}"><small></small>
 			</div>
 			<div>
-				<label>Zip Code </label><input name="zipcode" placeholder="12345"
-					type="text" id="zipCode" th:field="${deacon.address.zipCode}">
-				<span id="city" th:field="${deacon.address.city}"></span>   <span
-					id="state" th:field="${deacon.address.state}"></span><small></small>
+				<label>Zip Code </label> <input name="zipcode"
+					autocomplete="zipcode" placeholder="12345" type="text" id="zipCode"
+					th:field="${deacon.address.zipCode}"> <span id="city"
+					th:field="${deacon.address.city}"></span> <span id="state"
+					th:field="${deacon.address.state}"></span><small></small>
 			</div>
 
 
 			<div class="flex-item">
 				<label>Password </label><input id="password"
-					placeholder="Enter Password" type="password"
-					th:field="${deacon.password}"><i id="passwordEyeIcon"
-					class="fa-solid fa-eye"></i><small></small>
+					autocomplete="new-password" placeholder="Enter Password"
+					type="password" th:field="${deacon.password}"><i
+					id="passwordEyeIcon" class="fa-solid fa-eye"></i><small></small>
 			</div>
 			<div class="form-control">
 				<label>Confirm Password </label><input
-					placeholder="Confirm Password" type="password" id="confirmPassword"><i
+					placeholder="Confirm Password" autocomplete="new-password"
+					type="password" id="confirmPassword"><i
 					id="confirmPasswordEyeIcon" class="fa-solid fa-eye"></i><small></small>
 			</div>
 			<div class="flex-item">
@@ -67,15 +67,23 @@
 					<option th:value="Congrgation">Congregation</option>
 				</select><small></small>
 			</div>
+
 			<div class="flex-item">
-				<label>username </label><input placeholder="Janderson" id="username"
+				<label>Email </label><input placeholder="xxxxx@xxxx.com"
+					type="email" id="email" th:field="${deacon.email}"><small></small>
+			</div>
+			<div class="flex-item">
+				<label>username </label><input name="username"
+					placeholder="Janderson" autocomplete="username" id="username"
 					type="text" th:field="${deacon.username}"><small></small>
 			</div>
-			<button id="submit" value="submit" type="submit">Submit</button>
+			<button id="btn" value="submit" type="submit">Submit</button>
+			<small></small>
 		</div>
 	</form>
 	<div>
-		<a id="success" href="/login"></a>
+		<a  id="successUserRole" href="/login"></a>
+		<a  id="successAdminRole" href="/dashboard"></a>
 	</div>
 
 

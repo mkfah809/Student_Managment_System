@@ -17,9 +17,9 @@ public class Authority implements GrantedAuthority {
 
 	private Long id;
 	private String authority;
-	private Deacon decon;
+	private Deacon deacon;
 	
-	@JoinColumn(name = "decon_Id")
+	@JoinColumn(name = "deacon_Id")
 	@Override
 	public String getAuthority() {
 		return authority;
@@ -38,13 +38,13 @@ public class Authority implements GrantedAuthority {
 		this.id = id;
 	}
 	@ManyToOne
-	@JoinColumn(name = "decon_id")
-	public Deacon getDecon() {
-		return decon;
+	@JoinColumn(name = "deacon_id")
+	public Deacon getDeacon() {
+		return deacon;
 	}
 
-	public void setDecon(Deacon decon) {
-		this.decon = decon;
+	public void setDeacon(Deacon deacon) {
+		this.deacon = deacon;
 	}
 
 

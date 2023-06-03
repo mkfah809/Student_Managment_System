@@ -12,31 +12,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "address")
 public class Address {
-	private Long deconId;
-	private Deacon decon;
+	private Long deaconId;
+	private Deacon deacon;
 	private String addressLine;
 	private String city;
 	private String state;
 	private String zipCode;
 
 	@Id
-	public Long getDeconId() {
-		return deconId;
+	public Long getDeaconId() {
+		return deaconId;
 	}
 
-	public void setDeconId(Long deconId) {
-		this.deconId = deconId;
+	public void setDeaconId(Long deaconId) {
+		this.deaconId = deaconId;
 	}
 
 	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
 	@MapsId
-	@JoinColumn(name = "decon_id")
-	public Deacon getDecon() {
-		return decon;
+	@JoinColumn(name = "deacon_id")
+	public Deacon getDeacon() {
+		return deacon;
 	}
 
-	public void setDecon(Deacon decon) {
-		this.decon = decon;
+	public void setDeacon(Deacon deacon) {
+		this.deacon = deacon;
 	}
 
 	@Column(length = 100)
@@ -48,7 +48,7 @@ public class Address {
 		this.addressLine = addressLine;
 	}
 
-	@Column(length = 5)
+	@Column(length = 30)
 	public String getCity() {
 		return city;
 	}

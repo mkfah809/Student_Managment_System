@@ -19,7 +19,8 @@ public class DashboardController {
 	public String getDashboard(@AuthenticationPrincipal Deacon decon, ModelMap model) throws Exception {
   		Deacon foundDecon = DeconService.findByUsername(decon.getUsername());
 		try {
-			model.put("decon", foundDecon);
+			
+			model.put("deacon", foundDecon);
 			model.put("access", decon.getAuthorities().iterator().next());
 		} catch (Exception e) {
 			throw new Exception("You are not an admin to access this page");

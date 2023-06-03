@@ -2,18 +2,20 @@
 <head>
 <title>Dashboard</title>
 <body>
-	<div>
-		<a href="/register-new-decon">Register an Admin deacon?</a>
-	</div>
-	<div>
-		<a href="/register-new-hymn">Register a new hymn?</a>
-	</div>
+	<div th:if="${access.authority} == 'ROLE_ADMIN'">
+		<div>
+			<a href="/register/admin/user">Register an Admin deacon?</a>
+		</div>
+		<div>
+			<a href="/register-new-hymn">Register a new hymn?</a>
+		</div>
 
-	<div>
-		<a href="/get-all-decons">Want to access all Deacons?</a>
+		<div>
+			<a href="/get-all-decons">Want to access all Deacons?</a>
+		</div>
 	</div>
 	<div>
-		<a th:href="@{/profile/{deconId}(deconId=${decon.deconId})}">Profile</a>
+		<a th:href="@{/profile/{deaconId}(deaconId=${deacon.deaconId})}">Profile</a>
 	</div>
 
 	<form id="nav-right" action="/logout" method="POST">

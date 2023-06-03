@@ -22,7 +22,7 @@ public class CustomSecurityDecon extends Deacon implements UserDetails {
 	
 	public CustomSecurityDecon(Deacon deacon) {
 		this.setAuthorities(deacon.getAuthorities());
-		this.setDeconId(getDeconId());
+		this.setDeaconId(getDeaconId());
 		this.setPassword(deacon.getPassword());
 		this.setUsername(deacon.getUsername());
 		this.setAddress(deacon.getAddress());

@@ -40,11 +40,9 @@ public class DeaconServiceImpl implements DeaconServiceInterface {
 
 	@Override
 	public Deacon save(Deacon deacon) {
-		if (deacon.getDeconId() == null) {
+		if (deacon.getDeaconId() == null) {
 			deacon.setPassword(new BCryptPasswordEncoder().encode(deacon.getPassword()));
 			setAddressToOneExactUser(deacon);
-			setAuthorityToOneExactUser(deacon);
-		} else {
 		}
 		return deaconRepo.save(deacon);
 	}
@@ -61,17 +59,17 @@ public class DeaconServiceImpl implements DeaconServiceInterface {
 		address.setZipCode(deacon.getAddress().getZipCode());
 		address.setCity(deacon.getAddress().getCity());
 		address.setState(deacon.getAddress().getState());
-		address.setDeconId(deacon.getDeconId());
-		address.setDecon(deacon);
+		address.setDeaconId(deacon.getDeaconId());
+		address.setDeacon(deacon);
 		deacon.setAddress(address);
 	}
 
 	@Override
-	public void setAuthorityToOneExactUser(Deacon deacon) {
+	public void setAuthorityToOneExactUser(Deacon deacon, String privilege) {
 		Authority authority = new Authority();
 		Set<Authority> authorities = new HashSet<>();
-		authority.setAuthority("ROLE_USER");
-		authority.setDecon(deacon);
+		authority.setAuthority(privilege);
+		authority.setDeacon(deacon);
 		authorities.add(authority);
 		deacon.setAuthorities(authorities);
 	}
@@ -115,10 +113,6 @@ public class DeaconServiceImpl implements DeaconServiceInterface {
 		return deaconRepo.findByEmail(email);
 	}
 
-	@Override
-	public void sendMailForUsernameGenerator(Deacon decon) {
-		// TODO Auto-generated method stub
 
-	}
 
 }

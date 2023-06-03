@@ -43,32 +43,32 @@ public class UserController {
 	}
 
 	@GetMapping("/get-decon-{deconId}")
-	private String getExactDeconFromListOfDeacons(@PathVariable Long deconId, ModelMap model) {
-		Deacon decon = deconService.findById(deconId);
-		if (decon.getDeconId() != null) {
-			model.put("decon", decon);
+	private String getExactDeconFromListOfDeacons(@PathVariable Long deaconId, ModelMap model) {
+		Deacon deacon = deconService.findById(deaconId);
+		if (deacon.getDeaconId() != null) {
+			model.put("decon", deacon);
 		}
 		return "profile";
 	}
 
 	@PostMapping("/update-decon-{deconId}")
-	private String updateDeconFromList(Deacon decon) {
-		if (decon.getDeconId() != null) {
-			Deacon updatedDecon = deconService.save(decon);
+	private String updateDeconFromList(Deacon deacon) {
+		if (deacon.getDeaconId() != null) {
+			Deacon updatedDecon = deconService.save(deacon);
 		}
 		return "redirect:/get-all-decons";
 	}
 
 	@GetMapping("/profile/{deconId}")
-	private String getExactLoggedInDecon(@PathVariable Long deconId, ModelMap model) {
-		model.put("decon", deconService.findById(deconId));
+	private String getExactLoggedInDecon(@PathVariable Long deaconId, ModelMap model) {
+		model.put("decon", deconService.findById(deaconId));
 		return "profile";
 	}
 	
 	@PostMapping("/profile/{deconId}/update")
-	private String updateExactLoggedInDecon(Deacon decon) {
-		if (decon.getDeconId() != null) {
-			Deacon updatedDecon = deconService.save(decon);
+	private String updateExactLoggedInDecon(Deacon deacon) {
+		if (deacon.getDeaconId() != null) {
+			Deacon updatedDeacon = deconService.save(deacon);
 		}
 		return "redirect:/dashboard";
 	}

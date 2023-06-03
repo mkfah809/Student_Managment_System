@@ -23,9 +23,9 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "decons")
+@Table(name = "deacons")
 public class Deacon {
-	private Long deconId;
+	private Long deaconId;
 	private String firstName;
 	private String lastName;
 	private String username;
@@ -66,7 +66,7 @@ public class Deacon {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE }, mappedBy = "decon")
+			CascadeType.REMOVE }, mappedBy = "deacon")
 	public Set<Authority> getAuthorities() {
 		return authorities;
 	}
@@ -75,7 +75,7 @@ public class Deacon {
 		this.authorities = authorities;
 	}
 
-	@OneToMany(mappedBy = "decon")
+	@OneToMany(mappedBy = "deacon")
 	public List<Log> getLogs() {
 		return logs;
 	}
@@ -85,7 +85,7 @@ public class Deacon {
 	}
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-	@JoinTable(name = "decon_has_hymns", joinColumns = @JoinColumn(name = "decon_id"), inverseJoinColumns = @JoinColumn(name = "hymn_id"))
+	@JoinTable(name = "deacon_has_hymns", joinColumns = @JoinColumn(name = "deacon_id"), inverseJoinColumns = @JoinColumn(name = "hymn_id"))
 	public List<Hymn> getHymns() {
 		return hymns;
 	}
@@ -128,7 +128,7 @@ public class Deacon {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	@OneToOne(mappedBy = "decon", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToOne(mappedBy = "deacon", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, orphanRemoval = true)
 	public Address getAddress() {
 		return address;
@@ -140,12 +140,12 @@ public class Deacon {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getDeconId() {
-		return deconId;
+	public Long getDeaconId() {
+		return deaconId;
 	}
 
-	public void setDeconId(Long deconId) {
-		this.deconId = deconId;
+	public void setDeaconId(Long deaconId) {
+		this.deaconId = deaconId;
 	}
 
 }

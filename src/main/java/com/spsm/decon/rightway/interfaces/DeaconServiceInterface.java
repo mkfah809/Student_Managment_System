@@ -1,7 +1,9 @@
 package com.spsm.decon.rightway.interfaces;
 
 import java.util.List;
+import java.util.Set;
 
+import com.spsm.decon.rightway.dto.Authority;
 import com.spsm.decon.rightway.dto.Deacon;
 
 public interface DeaconServiceInterface {
@@ -15,14 +17,12 @@ public interface DeaconServiceInterface {
 
 	void setAddressToOneExactUser(Deacon decon);
 
-	void setAuthorityToOneExactUser(Deacon decon);
-
 	void sendMailForPasswordGenerator(Deacon decon);
-
-	void sendMailForUsernameGenerator(Deacon decon);
 
 	List<Deacon> findAll();
 
 	String generateTempPassword();
+
+	void setAuthorityToOneExactUser(Deacon deacon, String privilege);
 
 }

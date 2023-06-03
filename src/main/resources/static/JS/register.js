@@ -1,40 +1,51 @@
-let username = document.getElementById('username')
-username.addEventListener('blur', (e) => {
-	zipCode.addEventListener('blur', () => {
-		fetch(`/new/register/username/${username.value}`)
-			.then(response => {
-				if (response.status != 200) {
-					console.log("Error")
-					throw Error(response.statusText)
-				} else {
-					console.log("OK")
-					setSuccessFor(zipCode)
-					return response.json()
-				}
-			})
-			.then(data => {
-
-				console.log("data", data)
-
-			})
-	})
-})
-
 async function main() {
 	passwordShowUp()
 	getLocationInfo()
+	validateUsername()
+	validateEmail()
+	save()
+}
 
+async function save() {
 	document.getElementById('form').addEventListener('submit', (e) => {
-		e.preventDefault();
-		if (checkInputs()) {
-			getLocationInfo();
-			let user = register()
-		}
+		e.preventDefault() // to avoid header-contentType Error
 
+		if (checkInputs()) {
+			getExactUrlToSaveUserWithAuthority()
+
+		}
 	})
 }
 
-function register() {
+async function getExactUrlToSaveUserWithAuthority() {
+	if (window.location.href == "http://localhost:8080/user/self/registeration") {
+		register(setUser(), "/user/self/registeration", "", document.getElementById('btn'))
+		document.getElementById("successUserRole").style.display = "block"
+		document.getElementById("successUserRole").innerHTML = "Congratulations, New Account has been successfully created. Click here to redirect to Login Page"
+	} else if (window.location.href == "http://localhost:8080/register/admin/user") {
+		register(setUser(), "/register/admin/user", "", document.getElementById('btn'))
+		document.getElementById("successAdminRole").style.display = "block"
+			document.getElementById("successAdminRole").innerHTML = "Congratulations, New Account has been successfully created. Click here to redirect to Dashboard"
+	}
+}
+async function validateUsername() {
+	document.getElementById('username').addEventListener('blur', () => {
+		if (checkInputs()) {
+			register(setUser(), "/validate/username", "username is already token", document.getElementById('username'))
+		}
+	})
+}
+
+async function validateEmail() {
+	document.getElementById('email').addEventListener('blur', () => {
+		if (checkInputs()) {
+			register(setUser(), "/validate/email", "email is already token", document.getElementById('email'))
+
+		}
+	})
+}
+
+function setUser() {
 
 	let user = {
 		firstName: firstName.value,
@@ -46,12 +57,22 @@ function register() {
 		consecration: consecration.value,
 		address: {
 			addressLine: addressLine.value,
-			zibCode: zipCode.value
+			zipCode: zipCode.value,
+			city: document.getElementById('city').innerText,
+			state: document.getElementById('state').innerText
 		}
 	}
 
 
-	fetch("/new/register", {
+	return user
+
+}
+
+
+
+function register(user, url, errorMessage, element) {
+
+	fetch(url, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -63,18 +84,21 @@ function register() {
 		.then((data) => {
 			if (data === true) {
 				// user exists
-				setErrorFor(username, 'username already exists')
-				username.focus()
-				username.select()
+				setErrorFor(element, errorMessage)
+				element.select()
+				element.focus()
 			} else {
-				document.getElementById("success").innerHTML = "Congratulations, New Account has been successfully created."
+				setSuccessFor(element)
 			}
 
 		})
-
-	return user
-
 }
+
+
+
+
+
+
 
 async function passwordShowUp() {
 	let eyeIcons = document.querySelectorAll('.fa-eye')
@@ -131,7 +155,7 @@ function checkInputs() {
 	let addressLine = document.getElementById('addressLine')
 
 	if (firstName.value.trim() === '') {
-		setErrorFor(firstName, 'First Name cannot be blank')
+		setErrorFor(firstName, "First Name can't be blank")
 		firstName.focus()
 		return false
 	} else {
@@ -140,33 +164,24 @@ function checkInputs() {
 
 
 	if (lastName.value.trim() === '') {
-		setErrorFor(lastName, 'Last Name cannot be blank')
-		firstName.focus()
+		setErrorFor(lastName, "Last Name can't be blank")
+		lastName.focus()
 		return false
 	} else {
 		setSuccessFor(lastName)
 	}
 
 	if (dateOfBirth.value.trim() === '') {
-		setErrorFor(dateOfBirth, 'Date Of Birth cannot be blank')
+		setErrorFor(dateOfBirth, "Date Of Birth can't be blank")
 		dateOfBirth.focus()
 		return false
-	}
-
-	else {
+	} else {
 		setSuccessFor(dateOfBirth)
 	}
 
-	if (email.value.trim() === '') {
-		setErrorFor(email, 'Email cannot be blank')
-		email.focus()
-		return false
-	} else {
-		setSuccessFor(email)
-	}
 
 	if (addressLine.value.trim() === '') {
-		setErrorFor(addressLine, 'Address cannot be blank')
+		setErrorFor(addressLine, "Address can't be blank")
 		addressLine.focus()
 		return false
 	} else {
@@ -175,7 +190,7 @@ function checkInputs() {
 
 
 	if (password.value === '') {
-		setErrorFor(password, 'password cannot be blank')
+		setErrorFor(password, "password can't be blank")
 		password.focus()
 		password.select()
 		return false
@@ -184,12 +199,12 @@ function checkInputs() {
 	}
 
 	if (confirmPassword.value === '') {
-		setErrorFor(confirmPassword, 'password cannot be blank')
+		setErrorFor(confirmPassword, "password can't be blank")
 		confirmPassword.focus()
 		confirmPassword.select()
 		return false
 	} else if (password.value !== confirmPassword.value) {
-		setErrorFor(confirmPassword, 'password does not match')
+		setErrorFor(confirmPassword, "password doesn't match")
 		return false
 	} else {
 		setSuccessFor(confirmPassword)
@@ -204,8 +219,16 @@ function checkInputs() {
 		setSuccessFor(consecration)
 	}
 
+	if (email.value.trim() === '') {
+		setErrorFor(email, "Email can't be blank")
+		email.focus()
+		return false
+	} else {
+		setSuccessFor(email)
+	}
+
 	if (username.value.trim() === '') {
-		setErrorFor(username, 'Username cannot be blank')
+		setErrorFor(username, "Username can't be blank")
 		username.focus()
 		return false
 	} else {
@@ -222,7 +245,7 @@ function getLocationInfo() {
 		fetch(`http://api.zippopotam.us/us/${zipCode.value}`)
 			.then(response => {
 				if (response.status != 200) {
-					setErrorFor(zipCode, "Invalid Zipcode, please try again")
+					setErrorFor(zipCode, "Invalid Zipcode")
 					throw Error(response.statusText)
 				} else {
 					setSuccessFor(zipCode)
@@ -239,7 +262,5 @@ function getLocationInfo() {
 
 }
 
-
-
-
-main()
+main();
+document.getElementById("success").style.display = "hidden"

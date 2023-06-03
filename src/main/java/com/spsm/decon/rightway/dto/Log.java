@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity(name = "logs")
 public class Log {
 	private Long logId;
-	private Deacon decon;
+	private Deacon deacon;
 	private LocalDate date;
 	private String timeIn;
 	
@@ -42,13 +42,13 @@ public class Log {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "decon_id")
-	public Deacon getDecon() {
-		return decon;
+	@JoinColumn(name = "deacon_id")
+	public Deacon getDeacon() {
+		return deacon;
 	}
 
-	public void setDecon(Deacon decon) {
-		this.decon = decon;
+	public void setDeacon(Deacon deacon) {
+		this.deacon = deacon;
 	}
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
