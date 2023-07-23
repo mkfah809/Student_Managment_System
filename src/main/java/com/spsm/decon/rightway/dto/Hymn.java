@@ -22,16 +22,16 @@ public class Hymn {
 	private String whenToSay;
 	private String whoSay;
 	private String description;
-	private List<Deacon> deacons = new ArrayList<>();
+	private List<User> users = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "hymns", cascade = { CascadeType.MERGE, CascadeType.PERSIST,
 			CascadeType.REMOVE })
-	public List<Deacon> getDeacons() {
-		return deacons;
+	public List<User> getUsers() {
+		return users;
 	}
 
-	public void setDeacons(List<Deacon> deacons) {
-		this.deacons = deacons;
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	@Id

@@ -23,9 +23,9 @@ import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "deacons")
-public class Deacon {
-	private Long deaconId;
+@Table(name = "users")
+public class User {
+	private Long userId;
 	private String firstName;
 	private String lastName;
 	private String username;
@@ -35,10 +35,8 @@ public class Deacon {
 	private String email;
 	private String consecration;
 	private List<Hymn> hymns = new ArrayList<>();
-	private List<Log> logs = new ArrayList<>();
-	private Set<Authority> authorities = new HashSet<>();
-	
-	
+//	private Set<Authority> authorities = new HashSet<>();
+
 	@Column(length = 15)
 	public String getConsecration() {
 		return consecration;
@@ -65,27 +63,18 @@ public class Deacon {
 		this.password = password;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE }, mappedBy = "deacon")
-	public Set<Authority> getAuthorities() {
-		return authorities;
-	}
-
-	public void setAuthorities(Set<Authority> authorities) {
-		this.authorities = authorities;
-	}
-
-	@OneToMany(mappedBy = "deacon")
-	public List<Log> getLogs() {
-		return logs;
-	}
-
-	public void setLogs(List<Log> logs) {
-		this.logs = logs;
-	}
+//	@OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+//			CascadeType.REMOVE }, mappedBy = "user")
+//	public Set<Authority> getAuthorities() {
+//		return authorities;
+//	}
+//
+//	public void setAuthorities(Set<Authority> authorities) {
+//		this.authorities = authorities;
+//	}
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE, CascadeType.PERSIST })
-	@JoinTable(name = "deacon_has_hymns", joinColumns = @JoinColumn(name = "deacon_id"), inverseJoinColumns = @JoinColumn(name = "hymn_id"))
+	@JoinTable(name = "user_has_hymns", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "hymn_id"))
 	public List<Hymn> getHymns() {
 		return hymns;
 	}
@@ -128,7 +117,7 @@ public class Deacon {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	@OneToOne(mappedBy = "deacon", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+	@OneToOne(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, orphanRemoval = true)
 	public Address getAddress() {
 		return address;
@@ -140,12 +129,12 @@ public class Deacon {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long getDeaconId() {
-		return deaconId;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setDeaconId(Long deaconId) {
-		this.deaconId = deaconId;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }

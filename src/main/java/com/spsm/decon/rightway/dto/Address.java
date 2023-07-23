@@ -12,31 +12,31 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "address")
 public class Address {
-	private Long deaconId;
-	private Deacon deacon;
+	private Long userId;
+	private User user;
 	private String addressLine;
 	private String city;
 	private String state;
 	private String zipCode;
 
 	@Id
-	public Long getDeaconId() {
-		return deaconId;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setDeaconId(Long deaconId) {
-		this.deaconId = deaconId;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 	@OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE }, orphanRemoval = true)
 	@MapsId
-	@JoinColumn(name = "deacon_id")
-	public Deacon getDeacon() {
-		return deacon;
+	@JoinColumn(name = "user_id")
+	public User getUser() {
+		return user;
 	}
 
-	public void setDeacon(Deacon deacon) {
-		this.deacon = deacon;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Column(length = 100)
