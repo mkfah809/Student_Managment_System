@@ -2,9 +2,7 @@ package com.spsm.decon.rightway.dto;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,32 +25,34 @@ public class User {
 	private Long userId;
 	private String firstName;
 	private String lastName;
-	private String username;
-	private String password;
 	private LocalDate dateOfBirth;
 	private Address address;
 	private String email;
+	private String password;
 	private String consecration;
 	private List<Hymn> hymns = new ArrayList<>();
 //	private Set<Authority> authorities = new HashSet<>();
 
+	User() {};	// instead of @NoArgsConsturctors
+	
 	@Column(length = 15)
 	public String getConsecration() {
 		return consecration;
 	}
 
+	public User(Long userId, String firstName, String lastName, String email) {
+	
+	this.userId = userId;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.email = email;
+}
+
 	public void setConsecration(String consecration) {
 		this.consecration = consecration;
 	}
 
-	@Column(unique = true)
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	
 
 	public String getPassword() {
 		return password;
